@@ -1,0 +1,4 @@
+to be or not to be
+this is a question
+just do it !
+测试文本读取中文
