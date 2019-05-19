@@ -42,6 +42,7 @@ func variableShorter() {
 
 var aa = 5
 var bb = "stsr"
+
 //定义包内部的变量就不能使用 := 的方式,Go 中没有全局变量的概念
 //cc := 33
 var cc = 33
@@ -95,7 +96,7 @@ func enums() {
 		kotlin
 	)
 
-	const(
+	const (
 		Apple, Banana = iota + 1, iota + 2
 		Cherimoya, Durian
 		Elderberry, Fig
@@ -113,8 +114,8 @@ func enums() {
 
 	fmt.Println(red, yellow, blue, green)
 	fmt.Println(cpp, java, python, golang, kotlin)
-	fmt.Println(Apple,Banana,Cherimoya,Durian,Elderberry,Fig)
-	fmt.Println(b,kb,mb,gb,tb,pb)
+	fmt.Println(Apple, Banana, Cherimoya, Durian, Elderberry, Fig)
+	fmt.Println(b, kb, mb, gb, tb, pb)
 }
 
 func main() {
