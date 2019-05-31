@@ -3,8 +3,10 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"io"
 	"os"
 	"strconv"
+	"strings"
 )
 
 //Go中的循环只有for
@@ -24,8 +26,12 @@ func readFile(filename string) {
 	if err != nil {
 		panic(err)
 	}
+	printFileContent(file)
+}
 
-	scanner := bufio.NewScanner(file)
+// 使用系统接口 io.Reader 封装扩展方法
+func printFileContent(reader io.Reader) {
+	scanner := bufio.NewScanner(reader)
 	//省略初始条件,递增条件实现while
 	for scanner.Scan() {
 		fmt.Println(scanner.Text())
@@ -47,7 +53,13 @@ func main() {
 		converToBin(13), //1101
 	)
 
-	readFile("abc.txt")
+	readFile("01基础语法/abc.txt")
 
-	forever()
+	s := `to be or not to be 
+		this is a question
+		talk is cheep
+		`
+	printFileContent(strings.NewReader(s))
+
+	//forever()
 }
