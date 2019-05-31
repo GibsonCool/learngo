@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"imooc.com/doublex/learngo/03面向对象/接口/retriever/mock"
-	queue2 "imooc.com/doublex/learngo/03面向对象/接口/retriever/queue"
-	real2 "imooc.com/doublex/learngo/03面向对象/接口/retriever/real"
+	mock2 "imooc.com/doublex/learngo/04面向接口/retriever/mock"
+	queue3 "imooc.com/doublex/learngo/04面向接口/retriever/queue"
+	real3 "imooc.com/doublex/learngo/04面向接口/retriever/real"
 	"time"
 )
 
@@ -62,10 +62,10 @@ func inspect(r Retriever) {
 	fmt.Print(" > Type switch: ")
 
 	switch v := r.(type) {
-	case *mock.Retriever:
+	case *mock2.Retriever:
 		fmt.Println("Contents:", v.Contents)
 
-	case *real2.Retriever:
+	case *real3.Retriever:
 		fmt.Println("UserAgent:", v.UserAgent)
 	}
 	fmt.Println()
@@ -74,13 +74,13 @@ func inspect(r Retriever) {
 func main() {
 
 	var r Retriever
-	mockRetriever := mock.Retriever{Contents: "this is a fake imooc.com"}
+	mockRetriever := mock2.Retriever{Contents: "this is a fake imooc.com"}
 	r = &mockRetriever
 	fmt.Println(download(r))
 	//fmt.Printf("%T %v\n", r, r) //	mock.Retriever {this is a fake imooc.com}
 	inspect(r)
 
-	r = &real2.Retriever{
+	r = &real3.Retriever{
 		UserAgent: "Mozilla/5.0",
 		TimeOut:   time.Minute,
 	}
@@ -89,14 +89,14 @@ func main() {
 	inspect(r)
 
 	// Type assertion  直接取得接口中的真实类型。判断实现者是否是 mock.Retriever 类型
-	if realRetriever, ok := r.(*mock.Retriever); ok {
+	if realRetriever, ok := r.(*mock2.Retriever); ok {
 		fmt.Println(realRetriever.Contents)
 	} else {
 		fmt.Printf("not a mock retriever. This is a %T\n\n", realRetriever)
 	}
 
 	// 通过 interface{} 可以让queue接收任何类型的对象值
-	queue := queue2.QueuePlus{}
+	queue := queue3.QueuePlus{}
 	queue.Push(1)
 	queue.Push("abc")
 	queue.Push(true)
