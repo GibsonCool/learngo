@@ -98,3 +98,15 @@ func (node *Node) Traverse() {
 	node.Print()
 	node.Right.Traverse()
 }
+
+// 支持传入函数变量 ,由外部函数决定具体操作
+func (node *Node) TraverseFunc(f func(*Node)) {
+	if node == nil {
+		return
+	}
+
+	node.Left.TraverseFunc(f)
+	f(node)
+	node.Right.TraverseFunc(f)
+
+}
