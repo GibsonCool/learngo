@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 /*
-	切片(Slice): Slice 本省是没有数据的，是对底层数组(array)的一个view
+	切片(Slice): Slice 本省是没有数据的，是对底层数组(array)的一个view（映射）
 
 */
 

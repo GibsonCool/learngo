@@ -1,4 +1,4 @@
-package main
+package basic
 
 import (
 	"fmt"
@@ -56,9 +56,12 @@ var (
 //Go类型中没有隐式类型转换，必须都使用强制类型转换
 func triangle() {
 	var a, b = 3, 4
-	var c int
-	c = int(math.Sqrt(float64(a*a + b*b)))
-	fmt.Println(c)
+	fmt.Println(calcTriangle(a, b))
+}
+
+func calcTriangle(a, b int) int {
+	c := int(math.Sqrt(float64(a*a + b*b)))
+	return c
 }
 
 //常量定义 使用关键字 const

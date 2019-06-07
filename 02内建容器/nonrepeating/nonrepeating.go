@@ -1,4 +1,4 @@
-package main
+package nonrepeating
 
 import "fmt"
 
@@ -19,9 +19,9 @@ func main() {
 	fmt.Println(lengthOfNonRepeatingSubStr("一二三二一"))
 
 	//采用 rune 类型转换后可以不用考虑中英文的情况，结果就准确
-	fmt.Println(lengthOfNonRepeatingSubStr2("tesgadfb"))
-	fmt.Println(lengthOfNonRepeatingSubStr2("这里是慕课网"))
-	fmt.Println(lengthOfNonRepeatingSubStr2("一二三二一"))
+	fmt.Println(LengthOfNonRepeatingSubStr2("tesgadfb"))
+	fmt.Println(LengthOfNonRepeatingSubStr2("这里是慕课网"))
+	fmt.Println(LengthOfNonRepeatingSubStr2("一二三二一"))
 }
 
 //
@@ -52,7 +52,7 @@ func lengthOfNonRepeatingSubStr(s string) int {
 }
 
 //支持中文
-func lengthOfNonRepeatingSubStr2(s string) int {
+func LengthOfNonRepeatingSubStr2(s string) int {
 	//通过map来记录每个字符的位置
 	lastOccurred := make(map[rune]int)
 

@@ -3,6 +3,12 @@ package main
 import "fmt"
 
 /*
+	Map 的定义：
+		map[keyType] valueType {keyValue,valueValue}
+
+		valueType也可以是Map类型，比如：
+		map[int] map[int]string{}
+
 	Map 的操作
 
 		创建：make(map[string]int)

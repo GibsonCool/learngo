@@ -25,7 +25,7 @@ func main() {
 	}
 
 	sum := 0
-	//go中变量如果不适用编译器会提示错误，语法严格，可以使用 '_' 代替去除警告
+	//go中变量如果不使用编译器会提示错误，语法严格，可以使用 '_' 代替去除警告
 	for _, v := range arr3 {
 		sum += v
 	}
@@ -64,9 +64,8 @@ func printArray(arr [5]int) {
 	}
 }
 
-//可以传入指针来达到应用传递的效果
+//可以传入指针来达到引用传递的效果
 func printArrayPointer(arr *[5]int) {
-	//在这里将第一个数值改为100 并不会影响到原传入数组中的值，因为数组是值传递，会copy一份
 	arr[0] = 100
 	for index, value := range arr {
 		fmt.Println(index, value)
