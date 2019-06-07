@@ -4,13 +4,14 @@ import (
 	"bufio"
 	"fmt"
 	"imooc.com/doublex/learngo/03面向对象/tree"
+	"imooc.com/doublex/learngo/05函数式编程/functional/fib"
 	"io"
 	"strings"
 )
 
 func main() {
 
-	f := fibonacci()
+	f := fib.Fibonacci()
 	fmt.Println(f())
 	fmt.Println(f())
 	fmt.Println(f())
@@ -53,17 +54,6 @@ func main() {
 		nodeCount++
 	})
 	fmt.Println("Node count:", nodeCount)
-}
-
-/*
-	用闭包实现 斐波拉契
-*/
-func fibonacci() func() int {
-	a, b := 0, 1
-	return func() int {
-		a, b = b, a+b
-		return a
-	}
 }
 
 /*
