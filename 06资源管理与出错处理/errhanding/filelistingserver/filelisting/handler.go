@@ -9,13 +9,13 @@ import (
 
 const Pattern = "/list/"
 
-type userError string
+type UserError string
 
-func (e userError) Error() string {
+func (e UserError) Error() string {
 	return e.Message()
 }
 
-func (e userError) Message() string {
+func (e UserError) Message() string {
 	return string(e)
 }
 
@@ -25,7 +25,7 @@ func (e userError) Message() string {
 */
 func HandleFileList(writer http.ResponseWriter, request *http.Request) error {
 	if strings.Index(request.URL.Path, Pattern) != 0 {
-		return userError("path must start with" + Pattern)
+		return UserError("path must start with" + Pattern)
 	}
 
 	path := request.URL.Path[len(Pattern):]
