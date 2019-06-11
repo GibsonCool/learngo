@@ -5,6 +5,8 @@ package queue
 */
 type QueuePlus []interface{}
 
+// 向队列中加入一个元素
+// 		e.g.  p.Push(123)
 func (q *QueuePlus) Push(v interface{}) {
 	*q = append(*q, v)
 }
