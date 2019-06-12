@@ -6,7 +6,7 @@ import (
 )
 
 /*
-	协程 Coroutine
+	协程 Coroutine，go 中的 Goroutine 是实际并发执行的实体，底层是使用协程实现并发
 
 		轻量级"线程"
 
