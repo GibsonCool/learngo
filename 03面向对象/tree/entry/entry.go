@@ -61,6 +61,17 @@ func main() {
 
 	fmt.Println(q.Pop())
 	fmt.Println(q.isEmpty())
+
+	fmt.Println("================================")
+	c := root.TraverseWithChannel()
+	maxValueNode := 0
+	for node := range c {
+		if node.Value > maxValueNode {
+			maxValueNode = node.Value
+		}
+	}
+	fmt.Printf("maxValue : %d\n", maxValueNode)
+
 }
 
 /*

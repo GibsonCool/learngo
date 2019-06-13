@@ -110,3 +110,17 @@ func (node *Node) TraverseFunc(f func(*Node)) {
 	node.Right.TraverseFunc(f)
 
 }
+
+/*
+	通过 goroutine 和 channel 来遍历树
+*/
+func (node *Node) TraverseWithChannel() chan *Node {
+	out := make(chan *Node)
+	go func() {
+		node.TraverseFunc(func(node *Node) {
+			out <- node
+		})
+		close(out)
+	}()
+	return out
+}
