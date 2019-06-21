@@ -11,11 +11,13 @@ const infoRe = `<div class="m-btn purple" data-v-bff6f798>([^<]+)</div>`
 /*
 	个人信息详情页解析
 */
-func ParseProfile(contexts []byte) engine.ParseResult {
+func ParseProfile(contexts []byte, name string) engine.ParseResult {
 
 	re := regexp.MustCompile(infoRe)
 	allSubmatch := re.FindAllSubmatch(contexts, -1)
-	profile := model.Profile{}
+	profile := model.Profile{
+		Name: name,
+	}
 	for index, m := range allSubmatch {
 
 		//fmt.Printf("person info index %d: %s\n", index, string(m[1]))

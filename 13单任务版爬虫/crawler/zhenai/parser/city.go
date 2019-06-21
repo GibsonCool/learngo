@@ -14,13 +14,17 @@ func ParseCity(contents []byte) engine.ParseResult {
 	result := engine.ParseResult{}
 	limit := 10
 	for _, m := range matches {
-		result.Items = append(result.Items, "User "+string(m[2]))
+		name := string(m[2])
+		result.Items = append(result.Items, "User "+name)
 
 		result.Requests = append(
 			result.Requests,
 			engine.Request{
-				Url:        string(m[1]),
-				ParserFunc: ParseProfile,
+				Url: string(m[1]),
+				//巧妙利用函数式编程，闭包的优势链接上下不兼容的函数
+				ParserFunc: func(bytes []byte) engine.ParseResult {
+					return ParseProfile(bytes, name)
+				},
 			})
 
 		limit--
