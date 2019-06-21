@@ -18,7 +18,20 @@ import (
 */
 func Fetch(url string) ([]byte, error) {
 
-	resp, err := http.Get(url)
+	request, err := http.NewRequest(http.MethodGet, url, nil)
+
+	if err != nil {
+		return nil, err
+	}
+
+	// 添加请求头，模拟浏览器发送请求，否则个人详情页面请求会 403
+	request.Header.Set(
+		"User-Agent",
+		"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.90 Safari/537.36",
+	)
+	client := http.Client{}
+
+	resp, err := client.Do(request)
 	if err != nil {
 		return nil, err
 	}
@@ -26,6 +39,8 @@ func Fetch(url string) ([]byte, error) {
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
+
+		fmt.Println("Error url :", url)
 		fmt.Println("Error : statu code ", resp.StatusCode)
 	}
 
