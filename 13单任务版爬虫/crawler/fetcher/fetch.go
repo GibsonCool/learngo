@@ -7,7 +7,6 @@ import (
 	"golang.org/x/text/encoding"
 	"golang.org/x/text/encoding/unicode"
 	"golang.org/x/text/transform"
-	"io"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -30,18 +29,19 @@ func Fetch(url string) ([]byte, error) {
 		fmt.Println("Error : statu code ", resp.StatusCode)
 	}
 
+	body := bufio.NewReader(resp.Body)
 	//	通常网页的编码格式是不确定的
 	//	通过一个第三方库来获取该网页的编码格式
-	encoding := determineEncoding(resp.Body)
+	encoding := determineEncoding(body)
 
 	// 内容通过制定编码格式转换为一个新的 reader
-	newReader := transform.NewReader(resp.Body, encoding.NewDecoder())
+	newReader := transform.NewReader(body, encoding.NewDecoder())
 
 	return ioutil.ReadAll(newReader)
 }
 
-func determineEncoding(r io.Reader) encoding.Encoding {
-	bytes, e := bufio.NewReader(r).Peek(1024)
+func determineEncoding(r *bufio.Reader) encoding.Encoding {
+	bytes, e := r.Peek(1024)
 	if e != nil {
 		log.Printf("Fetcher error: %v", e)
 		return unicode.UTF8
