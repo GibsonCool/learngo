@@ -5,7 +5,7 @@ import "fmt"
 /*
 	面向'对象'：
 
-		go 语言中只支持封装。不支持继承和多态(继承和多态功能过接口来做，面向接口编程)
+		go 语言中只支持封装。不支持继承和多态(继承和多态功能通过接口来做，面向接口编程)
 
 		go 中也没有class（类）,只有struct--》结构体
 */
@@ -79,7 +79,7 @@ func (node Node) SetValue(value int) {
 	node.Value = value
 }
 
-//指正传递(引用传递)--》传递是元数据的地址值。对数据的操作会直接反应到原数据上
+//指针传递(引用传递)--》传递是元数据的地址值。对数据的操作会直接反应到原数据上
 func (node *Node) SetValuePointer(value int) {
 	if node == nil {
 		fmt.Println("Setting Value to nil node ,Ignore")

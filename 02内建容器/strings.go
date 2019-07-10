@@ -6,7 +6,7 @@ import (
 )
 
 /*
-	rune 在 go 中据是其他语言的 char 类型
+	rune 在 go 中就是其他语言的 char 类型
 
 	字符串的一些操作通常都可以在 strings 这个包里面找到，常用的比如:
 
@@ -37,7 +37,7 @@ func main() {
 	/*
 		使用 utf8 库的一些转解码操作，帮我们解决底层数据的解析，便于使用
 	*/
-	fmt.Println("Rune count:", utf8.RuneCountInString(s)) // 将 s 先转成 rune 在统计结果就可以忽律中英文不通字节的问题
+	fmt.Println("Rune count:", utf8.RuneCountInString(s)) // 将 s 先转成 rune 在统计结果就可以忽律中英文不同字节的问题
 
 	bytes := []byte(s)
 	for len(bytes) > 0 {

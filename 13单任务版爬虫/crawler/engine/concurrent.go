@@ -11,19 +11,24 @@ type ConcurrentEngine struct {
 
 type Scheduler interface {
 	Submit(Request)
-	ConfigureMasterWorkerChan(chan Request)
+	WorkerChan() chan Request
+	ReadyNotifier
+	Run()
+}
+
+type ReadyNotifier interface {
+	WorkerReady(chan Request)
 }
 
 func (e *ConcurrentEngine) Run(seeds ...Request) {
 
-	in := make(chan Request)
 	out := make(chan ParseResult)
 
-	e.Scheduler.ConfigureMasterWorkerChan(in)
+	e.Scheduler.Run()
 
 	// 根据指定的数量创建 worker
 	for i := 0; i < e.WorkerCount; i++ {
-		createWorker(in, out)
+		createWorker(e.Scheduler.WorkerChan(), out, e.Scheduler)
 	}
 
 	//将任务源 request 送入调度器中
@@ -49,9 +54,12 @@ func (e *ConcurrentEngine) Run(seeds ...Request) {
 /*
 	开启一个 goroutine 去执行 worker 任务
 */
-func createWorker(in chan Request, out chan ParseResult) {
+func createWorker(in chan Request, out chan ParseResult, ready ReadyNotifier) {
 	go func() {
 		for {
+			// tell scheduler  i'm ready
+			ready.WorkerReady(in)
+
 			// 从 chan 中取出任务
 			request := <-in
 			// 交给 worker 去执行解析

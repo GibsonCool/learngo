@@ -17,9 +17,9 @@ import (
 */
 func main() {
 	//chanDemo()
-	//chanDemo2()
+	chanDemo2()
 	//bufferChannel()
-	channelClose()
+	//channelClose()
 }
 
 func chanDemo() {
@@ -69,7 +69,7 @@ func chanDemo2() {
 func worker(id int, c chan int) {
 	for {
 		//n := <-c
-		fmt.Printf("Worker %d received %c\n", id, <-c)
+		fmt.Printf("Worker %d received %d\n", id, <-c)
 	}
 }
 

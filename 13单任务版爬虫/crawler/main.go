@@ -4,6 +4,8 @@ import (
 	"imooc.com/doublex/learngo/13单任务版爬虫/crawler/engine"
 	"imooc.com/doublex/learngo/13单任务版爬虫/crawler/scheduler"
 	"imooc.com/doublex/learngo/13单任务版爬虫/crawler/zhenai/parser"
+	"runtime"
+	"strings"
 )
 
 /*
@@ -19,9 +21,10 @@ func main() {
 	//	},
 	//)
 
-	// 并发调度器
+	//并发调度器
 	e := engine.ConcurrentEngine{
-		Scheduler:   &scheduler.SimpleScheduler{},
+		Scheduler: &scheduler.SimpleScheduler{},
+		//Scheduler:   &scheduler.QueueScheduler{},
 		WorkerCount: 100,
 	}
 
@@ -31,4 +34,14 @@ func main() {
 			ParserFunc: parser.ParseCityList,
 		},
 	)
+}
+
+func currentFile() string {
+	_, file, _, ok := runtime.Caller(1)
+	if !ok {
+		panic(" Can not get current file info")
+	}
+	lastIndex := strings.LastIndex(file, "/") + 1
+	file = file[:lastIndex]
+	return file
 }
