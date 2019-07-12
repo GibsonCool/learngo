@@ -13,7 +13,7 @@ func main() {
 	root = tree.Node{}
 	fmt.Println(root)
 
-	//指针应用，所以加&取地址值
+	//指针引，所以加&取地址值
 	root.Left = &tree.Node{}
 	root.Right = &tree.Node{5, nil, nil}
 	fmt.Println(root)

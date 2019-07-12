@@ -2,6 +2,7 @@ package main
 
 import (
 	"imooc.com/doublex/learngo/13单任务版爬虫/crawler/engine"
+	"imooc.com/doublex/learngo/13单任务版爬虫/crawler/persist"
 	"imooc.com/doublex/learngo/13单任务版爬虫/crawler/scheduler"
 	"imooc.com/doublex/learngo/13单任务版爬虫/crawler/zhenai/parser"
 	"runtime"
@@ -13,24 +14,22 @@ import (
 */
 func main() {
 
-	// 简单调度器
-	//engine.SimpleEngine{}.Run(
-	//	engine.Request{
-	//		Url:        "http://www.zhenai.com/zhenghun",
-	//		ParserFunc: parser.ParseCityList,
-	//	},
-	//)
+	//initUrl := "http://www.zhenai.com/zhenghun"
+	initUrl := "http://www.zhenai.com/zhenghun/shanghai"
 
 	//并发调度器
 	e := engine.ConcurrentEngine{
-		Scheduler: &scheduler.SimpleScheduler{},
-		//Scheduler:   &scheduler.QueueScheduler{},
+		// 简单调度器
+		//Scheduler: &scheduler.SimpleScheduler{},
+		// 并发队列调度器
+		Scheduler:   &scheduler.QueueScheduler{},
 		WorkerCount: 100,
+		ItemChan:    persist.ItemSaver(),
 	}
 
 	e.Run(
 		engine.Request{
-			Url:        "http://www.zhenai.com/zhenghun",
+			Url:        initUrl,
 			ParserFunc: parser.ParseCityList,
 		},
 	)

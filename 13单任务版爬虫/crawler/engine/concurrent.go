@@ -1,12 +1,9 @@
 package engine
 
-import (
-	"fmt"
-)
-
 type ConcurrentEngine struct {
 	Scheduler   Scheduler
 	WorkerCount int
+	ItemChan    chan interface{}
 }
 
 type Scheduler interface {
@@ -41,7 +38,7 @@ func (e *ConcurrentEngine) Run(seeds ...Request) {
 		result := <-out
 		// 处理结果
 		for _, item := range result.Items {
-			fmt.Printf("ConcurrentEngine got item : %v\n", item)
+			go func() { e.ItemChan <- item }()
 		}
 
 		// 将新任务源 request 加入到调度器中处理
