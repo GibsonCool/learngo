@@ -1,7 +1,7 @@
 package parser
 
 import (
-	"imooc.com/doublex/learngo/13单任务版爬虫/singleCrawler/engine"
+	"imooc.com/doublex/learngo/13爬虫/crawler/engine"
 	"regexp"
 )
 
@@ -31,10 +31,14 @@ func ParseCityList(contents []byte) engine.ParseResult {
 			engine.Request{
 				Url: string(m[1]),
 				//城市下用户列表解析器
-				ParseFunc: ParseCity,
+				//ParseFunc: ParseCity,
+
+				// 由于网站改版了，直接在城市这级就获取解析用户信息
+				ParseFunc: ParseCityProfile,
 			},
 		)
-		if index == 3 {
+		//TODO: 需要删除，测试用来控制条数
+		if index == 0 {
 			break
 		}
 	}

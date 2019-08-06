@@ -1,7 +1,7 @@
 package parser
 
 import (
-	"imooc.com/doublex/learngo/13单任务版爬虫/singleCrawler/engine"
+	"imooc.com/doublex/learngo/13爬虫/crawler/engine"
 	"regexp"
 )
 
@@ -15,7 +15,7 @@ func ParseCity(contents []byte) engine.ParseResult {
 	matches := re.FindAllSubmatch(contents, -1)
 
 	result := engine.ParseResult{}
-	for _, m := range matches {
+	for index, m := range matches {
 
 		result.Items = append(result.Items, "User  "+string(m[2]))
 		result.Requests = append(
@@ -26,6 +26,10 @@ func ParseCity(contents []byte) engine.ParseResult {
 				ParseFunc: engine.NilParser,
 			},
 		)
+		//TODO: 需要删除，测试用来控制条数
+		if index == 3 {
+			break
+		}
 	}
 	return result
 }

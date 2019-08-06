@@ -1,7 +1,7 @@
 package engine
 
 import (
-	"imooc.com/doublex/learngo/13单任务版爬虫/singleCrawler/fetcher"
+	"imooc.com/doublex/learngo/13爬虫/crawler/fetcher"
 	"log"
 )
 
