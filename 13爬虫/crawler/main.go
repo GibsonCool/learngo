@@ -10,7 +10,7 @@ func main() {
 	initUrl := "http://www.zhenai.com/zhenghun"
 
 	e := engine.ConcurrentEngine{
-		Scheduler:   &scheduler.SimpleScheduler{},
+		Scheduler:   &scheduler.QueuedScheduler{},
 		WorkerCount: 10,
 	}
 

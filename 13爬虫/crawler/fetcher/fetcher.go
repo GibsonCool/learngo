@@ -13,7 +13,7 @@ var rateLimiter = time.Tick(10 * time.Millisecond)
 	根据链接地址读取内容
 */
 func Fetch(url string) ([]byte, error) {
-	<-rateLimiter
+	//<-rateLimiter
 	client := &http.Client{}
 
 	request, e := http.NewRequest(http.MethodGet, url, nil)
