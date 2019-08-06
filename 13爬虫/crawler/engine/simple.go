@@ -5,7 +5,10 @@ import (
 	"log"
 )
 
-func Run(seeds ...Request) {
+type SimpleEngine struct {
+}
+
+func (e SimpleEngine) Run(seeds ...Request) {
 
 	var requests []Request
 
@@ -17,15 +20,11 @@ func Run(seeds ...Request) {
 		r := requests[0]
 		requests = requests[1:]
 
-		log.Printf("Featching %s", r.Url)
-		body, e := fetcher.Fetch(r.Url)
-		if e != nil {
-			log.Printf("Fetcher : error fetching url %s : %v", r.Url, e)
-			// 如果某个请求错误了，直接跳过
+		parseResult, err := worker(r)
+		if err != nil {
 			continue
 		}
 
-		parseResult := r.ParseFunc(body)
 		requests = append(requests, parseResult.Requests...)
 
 		//结果这里先直接打印
@@ -34,4 +33,16 @@ func Run(seeds ...Request) {
 		}
 
 	}
+}
+
+func worker(r Request) (ParseResult, error) {
+	log.Printf("Featching %s", r.Url)
+	body, e := fetcher.Fetch(r.Url)
+	if e != nil {
+		log.Printf("Fetcher : error fetching url %s : %v", r.Url, e)
+		// 如果某个请求错误了，直接跳过
+		return ParseResult{}, e
+	}
+
+	return r.ParseFunc(body), nil
 }

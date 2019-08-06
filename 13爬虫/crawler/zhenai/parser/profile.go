@@ -3,7 +3,6 @@ package parser
 import (
 	"imooc.com/doublex/learngo/13爬虫/crawler/engine"
 	"imooc.com/doublex/learngo/13爬虫/crawler/model"
-	"log"
 	"regexp"
 	"strconv"
 )
@@ -12,7 +11,6 @@ import (
 func BytesToInt(b []byte) int {
 
 	x, _ := strconv.Atoi(string(b))
-	log.Println("age:", x)
 	return x
 }
 

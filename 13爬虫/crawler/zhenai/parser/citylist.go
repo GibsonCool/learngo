@@ -15,7 +15,7 @@ func ParseCityList(contents []byte) engine.ParseResult {
 	matches := re.FindAllSubmatch(contents, -1)
 
 	result := engine.ParseResult{}
-	for index, m := range matches {
+	for _, m := range matches {
 		//fmt.Printf("%s\n",m)
 
 		//for _,subM :=range  m {
@@ -37,10 +37,7 @@ func ParseCityList(contents []byte) engine.ParseResult {
 				ParseFunc: ParseCityProfile,
 			},
 		)
-		//TODO: 需要删除，测试用来控制条数
-		if index == 0 {
-			break
-		}
+
 	}
 	return result
 }
