@@ -1,6 +1,7 @@
 package model
 
 type Profile struct {
+	Id                string
 	Name              string
 	Gender            string //性别
 	CurrentResidence  string //居住地

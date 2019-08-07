@@ -5,6 +5,7 @@ import (
 	"imooc.com/doublex/learngo/13爬虫/crawler/model"
 	"regexp"
 	"strconv"
+	"strings"
 )
 
 //字节转换成整形
@@ -47,8 +48,12 @@ func ParseCityProfile(contents []byte) engine.ParseResult {
 			salaryOrEducation = string(educationMatches[womanIndex][1])
 			womanIndex++
 		}
+		infoLink := string(m[1])
+
+		split := strings.Split(infoLink, "/u/")
 
 		profile := model.Profile{
+			Id:                split[1],
 			Name:              string(m[2]),
 			Gender:            string(genderMatches[index][1]),
 			Age:               BytesToInt(ageMatches[index][1]),
@@ -56,17 +61,18 @@ func ParseCityProfile(contents []byte) engine.ParseResult {
 			CurrentResidence:  string(currentResMatches[index][1]),
 			SalaryOrEducation: salaryOrEducation,
 			Height:            BytesToInt(heightMatches[index][1]),
-			InfoLink:          string(m[1]),
+			InfoLink:          infoLink,
 		}
 
 		result.Items = append(result.Items, profile)
-		result.Requests = append(
-			result.Requests,
-			engine.Request{
-				Url:       string(m[1]),
-				ParseFunc: engine.NilParser,
-			},
-		)
+		// 这里不往下解析了，就不加入请求任务队列了
+		//result.Requests = append(
+		//	result.Requests,
+		//	engine.Request{
+		//		Url:       string(m[1]),
+		//		ParseFunc: engine.NilParser,
+		//	},
+		//)
 
 	}
 
