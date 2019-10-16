@@ -32,11 +32,11 @@ func main() {
 	root.SetValue(10)
 	root.Print()
 
-	//调用指针传递的方法可以修改数据。切和值传递方法调用无差别
+	//调用指针传递的方法可以修改数据。并且和值传递方法调用无差别
 	root.SetValuePointer(33)
 	root.Print()
 
-	//nil指正也可调用方法
+	//nil指正也可调用方法，但编辑器一般会有黄线警告
 	var testNil *tree.Node
 	testNil.SetValuePointer(3)
 	testNil = &root

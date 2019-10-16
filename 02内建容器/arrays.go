@@ -29,7 +29,7 @@ func main() {
 	for _, v := range arr3 {
 		sum += v
 	}
-	fmt.Printf("sum: %d", sum)
+	fmt.Printf("sum: %d\n", sum)
 
 	fmt.Println("********************************")
 
@@ -53,7 +53,7 @@ func main() {
 	fmt.Println("********************************")
 }
 
-// 数组是值类型，在函数中使用的时候回copy值
+// 数组是值类型，在函数中使用的时候会copy值
 // []int  和 [5]int  是完全不一样的东西，前者是切片  后者才是数组
 
 func printArray(arr [5]int) {

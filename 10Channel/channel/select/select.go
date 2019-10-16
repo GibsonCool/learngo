@@ -98,7 +98,7 @@ func test2() {
 	var values []int
 
 	// 倒计时使用，返回一个 chan time 类型。当到达指定时间后，回放 chan time 中发送当前 time 数据
-	timeEnd := time.After(10 * time.Second)
+	timeEnd := time.After(5 * time.Second)
 
 	// 定时任务，定时每 1 秒钟往 返回的 chan time 中发送数据
 	tick := time.Tick(time.Second)

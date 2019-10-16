@@ -32,7 +32,7 @@ func readFile(filename string) {
 // 使用系统接口 io.Reader 封装扩展方法
 func printFileContent(reader io.Reader) {
 	scanner := bufio.NewScanner(reader)
-	//省略初始条件,递增条件实现while
+	//省略初始条件,递增条件实现while，当 scanner.Scan()返回false 循环结束
 	for scanner.Scan() {
 		fmt.Println(scanner.Text())
 	}

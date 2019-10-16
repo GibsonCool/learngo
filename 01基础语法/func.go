@@ -71,7 +71,7 @@ func swap(a, b int) {
 	b, a = a, b
 }
 
-//值传递可以通过这种方法返回接受来叫从新赋值交换
+//值传递可以通过这种方法返回接受参数从新赋值交换
 func swapReturn(a, b int) (bb, aa int) {
 	return b, a
 }
