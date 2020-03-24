@@ -36,7 +36,7 @@ func createWorker(id int, wg *sync.WaitGroup) worker {
 
 /*
 	WaitGroup:
-		在 go 语言中，用于线程同步，单从字面意思理解，wait 等待的意思，
+		在 go 语言中，用于协程同步，单从字面意思理解，wait 等待的意思，
 		group 组、团队的意思，WaitGroup 就是指等待一组，等待一个系列执行完成后才会继续向下执行。
 
 	用途：

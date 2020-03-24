@@ -25,7 +25,7 @@ func main() {
 	s3 := make([]int, 10, 32)
 
 	// 从输出结果可以看出，当 len 要大于原 cap 时候,  cap 将扩展原 cap 长度的两倍
-	for i := 0; i < 100; i++ {
+	for i := 0; i < 50; i++ {
 		printSlice(s)
 		s = append(s, i*2+1)
 	}

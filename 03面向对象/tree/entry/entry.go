@@ -13,7 +13,7 @@ func main() {
 	root = tree.Node{}
 	fmt.Println(root)
 
-	//指针引，所以加&取地址值
+	//指针引用，所以加&取地址值
 	root.Left = &tree.Node{}
 	root.Right = &tree.Node{5, nil, nil}
 	fmt.Println(root)
@@ -36,7 +36,7 @@ func main() {
 	root.SetValuePointer(33)
 	root.Print()
 
-	//nil指正也可调用方法，但编辑器一般会有黄线警告
+	//nil指针也可调用方法，但编辑器一般会有黄线警告
 	var testNil *tree.Node
 	testNil.SetValuePointer(3)
 	testNil = &root

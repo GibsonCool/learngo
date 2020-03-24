@@ -17,9 +17,9 @@ import (
 */
 func main() {
 	//chanDemo()
-	chanDemo2()
+	//chanDemo2()
 	//bufferChannel()
-	//channelClose()
+	channelClose()
 }
 
 func chanDemo() {
@@ -41,6 +41,8 @@ func chanDemo() {
 			规定 channel 用过取出数据(received-only)：  <- chan  type
 
 	*/
+
+	// 往管道中发送数据
 	c <- 1
 	c <- 2
 

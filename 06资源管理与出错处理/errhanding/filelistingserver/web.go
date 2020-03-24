@@ -37,7 +37,7 @@ func main() {
 }
 
 // 定义 appHandler 函数类型（函数类型是表示所有包含相同参数和返回类型的函数集合）
-// filelisting.HandleFileList 就是次函数类型的一个实例
+// filelisting.HandleFileList 就是此函数类型的一个实例
 type appHandler func(writer http.ResponseWriter, request *http.Request) error
 
 func errWrapper(handler appHandler) func(http.ResponseWriter, *http.Request) {

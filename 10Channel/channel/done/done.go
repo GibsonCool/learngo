@@ -36,11 +36,11 @@ func createWorker(id int) worker {
 }
 
 /*
-	从输出结果看，程序并没有异常除以 deadlock 死锁的情况，
+	从输出结果看，程序并没有异常出现 deadlock 死锁的情况，
 
 	因为无论是 in chan int  还是 done chan bool 都是发送和接收配对。
 
-	但是这里必须 in 发送接收完。done 就跟着发送接收通知结束继续下一个成了顺序执行了，并发的意义全无
+	但是这里必须 in 发送接收完。done 就跟着发送接收通知，结束继续下一个成了顺序执行了，并发的意义全无
 
 	为了解决这种问题，我们使用系统的 WaitGroup 来避免。查看 waitGroup --> done2
 */

@@ -66,12 +66,12 @@ func CreateTreeNode(value int) *Node {
 		nil 指针也可以调用方法
 */
 func (node Node) Print() {
-	fmt.Print(node.Value, " ")
+	fmt.Println(node.Value, " ")
 }
 
 //与上面相比，其实结构的方法和普通方法大同小异，只是一个需要方法接收者，然后调用方式不同
 func Print(node Node) {
-	fmt.Print(node.Value, " ")
+	fmt.Println(node.Value, " ")
 }
 
 //值传递--》数据会copy一份，对copy数据的操作并不会反应到原数据上

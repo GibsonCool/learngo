@@ -7,13 +7,13 @@ import (
 )
 
 /*
-	go 中也有支持传统的同步机制（"通过共享变量来通讯"）
+	go 中也有支持传统的同步机制（"通过共享内存来通讯"）
 
 	其中典型的一个就是 Mutex 互斥锁。
 */
 func main() {
-	//goRoutinuePrint(Incr)
-	goRoutinuePrint(IncrMutex)
+	goRoutinuePrint(Incr)
+	//goRoutinuePrint(IncrMutex)
 }
 
 /*

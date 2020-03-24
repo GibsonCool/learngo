@@ -14,7 +14,7 @@ func main() {
 	tryDefer()
 	//fmt.Println(currentFile())
 	deferValue()
-	//writeFile("fib.text")
+	writeFile("fib.text")
 	writeFileErrorHanding("fib.txt")
 }
 
@@ -57,7 +57,7 @@ func writeFile(fileName string) {
 
 	f := fib.Fibonacci()
 	for i := 0; i < 30; i++ {
-		fmt.Fprintln(writer, f())
+		_, _ = fmt.Fprintln(writer, f())
 	}
 }
 

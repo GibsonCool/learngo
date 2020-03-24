@@ -89,8 +89,10 @@ func main() {
 	inspect(r)
 
 	// Type assertion  直接取得接口中的真实类型。判断实现者是否是 mock.Retriever 类型
+	// 如果断言失败，那么ok的值将会是false,value返回断言输入的期望值。但是如果断言成功ok的值将会是true,同时value将会得到所期待的正确的值。
 	if realRetriever, ok := r.(*mock2.Retriever); ok {
 		fmt.Println(realRetriever.Contents)
+		fmt.Printf(" This is a %T\n\n", realRetriever)
 	} else {
 		fmt.Printf("not a mock retriever. This is a %T\n\n", realRetriever)
 	}

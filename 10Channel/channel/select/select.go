@@ -22,9 +22,9 @@ import (
 
 */
 func main() {
-	//randSelect()
+	randSelect()
 	//test1()
-	test2()
+	//test2()
 }
 
 /*

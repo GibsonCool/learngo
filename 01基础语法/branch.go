@@ -23,7 +23,7 @@ func grade(score int) string {
 }
 
 func main() {
-	const filename = "基础语法/abc.txt"
+	const filename = "01基础语法/abc.txt"
 
 	contents, err := ioutil.ReadFile(filename)
 

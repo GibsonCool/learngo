@@ -46,13 +46,13 @@ func tryRecover() {
 		error
 	*/
 	//panic(errors.New("自定义一个错误"))
-	//b:=0
-	//a:=5/b
-	//fmt.Println(a)
+	b := 0
+	a := 5 / b
+	fmt.Println(a)
 
 	/*
 		not error
 	*/
-	panic(123)
+	//panic(123)
 
 }

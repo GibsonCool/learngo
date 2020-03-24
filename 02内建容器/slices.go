@@ -1,9 +1,14 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"reflect"
+)
 
 /*
-	切片(Slice): Slice 本身是没有数据的，是对底层数组(array)的一个view（映射）
+	切片(Slice):
+			Slice 本身是没有数据的，是对底层数组(array)的一个view（映射）
+			因此对 view 上的操作都会真实反映到底层 array 中
 
 */
 
@@ -18,6 +23,8 @@ func main() {
 	s1 := arr[2:]
 	s2 := arr[:]
 
+	fmt.Println("arr 的类型", reflect.TypeOf(arr))
+	fmt.Println("s1 的类型", reflect.TypeOf(s1))
 	fmt.Println("After updateSlice(s1)******************************************")
 	//这里传入切片类型，就可以达到数组传入指针引用的效果。
 	updateSlice(s1)
@@ -35,6 +42,7 @@ func main() {
 	fmt.Println(arr)
 
 	fmt.Println("Exding Slice ******************************************")
+
 	/*
 		slice的实现包含三个东西： ptr(指向slice开头的元素)  len(表示这个长度 s[] 取值不能超过这个长度)  cap(表示ptr到整个底层数组结束的长度)
 		slice可以向后扩折，不可以向前扩展，
@@ -62,7 +70,7 @@ func main() {
 			从arr 结果可以看出来，s4,s5的操作并没有在arr上因为 append的时候已经超出了cap(arr)的长度，
 			所以系统会用一个更长的数组来copy一份原数据进行操作。然后切片对于新数组的操作不会映射到旧数组上
 
-		2、由于值传递的关系，必须接受appedn的返回值
+		2、由于值传递的关系，必须接受 append 的返回值
 
 	*/
 	fmt.Println(arr) //[0 1 2 3 4 5 6 10]
